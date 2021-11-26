@@ -7,6 +7,7 @@ import {
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  // const app = await NestFactory.create(AppModule, { cors: true });
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({
@@ -19,6 +20,7 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 200,
   });
+
   app.useLogger(['verbose']);
   await app.listen(8080).then(() => Logger.log('Server running.'));
 }
